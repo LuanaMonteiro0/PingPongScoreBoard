@@ -27,6 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import br.edu.ifsp.scl.prdm.sc3029972.pingpongscoreboard.ui.theme.PingPongScoreBoardTheme
 
 class MainActivity : ComponentActivity() {
@@ -45,16 +46,17 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+// etapa 3: implementando estado de variaveis utilizando ViewModel + mutableIntStateOf
 @Composable
-fun MainScreen(modifier: Modifier = Modifier) {
+fun MainScreen(modifier: Modifier = Modifier, mainViewModel: MainViewModel = viewModel()) {
 
     // etapa 1: implementando estado de variaveis utilizando a função remember
     //var scoreTeamA by remember { mutableIntStateOf(0) }
     //var scoreTeamB by remember { mutableIntStateOf(0) }
 
     // etapa 2: implementando estado de variaveis utilizando a função rememberSaveable
-    var scoreTeamA by rememberSaveable { mutableIntStateOf(0) }
-    var scoreTeamB by rememberSaveable { mutableIntStateOf(0) }
+    // var scoreTeamA by rememberSaveable { mutableIntStateOf(0) }
+    // var scoreTeamB by rememberSaveable { mutableIntStateOf(0) }
 
     Column(modifier = modifier.fillMaxSize()){
 
@@ -79,7 +81,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
             )
 
             Text(
-                text = scoreTeamA.toString(),
+                text = mainViewModel.scoreTeamA.toString(),
                 modifier = Modifier
                     .fillMaxWidth(),
                 textAlign = TextAlign.Center,
@@ -96,7 +98,9 @@ fun MainScreen(modifier: Modifier = Modifier) {
                     disabledContainerColor = Color.DarkGray
                 ),
                 onClick = {
-                    scoreTeamA++
+                    var scoreA = mainViewModel.scoreTeamA
+                    scoreA++
+                    mainViewModel.updateScoreTeamA(scoreA)
                 }
             ){
 
@@ -126,7 +130,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
             )
 
             Text(
-                text = scoreTeamB.toString(),
+                text = mainViewModel.scoreTeamB.toString(),
                 modifier = Modifier
                     .fillMaxWidth(),
                 textAlign = TextAlign.Center,
@@ -143,7 +147,9 @@ fun MainScreen(modifier: Modifier = Modifier) {
                     disabledContainerColor = Color.DarkGray
                 ),
                 onClick = {
-                    scoreTeamB++
+                    var scoreB = mainViewModel.scoreTeamB
+                    scoreB++
+                    mainViewModel.updateScoreTeamB(scoreB)
                 }
             ){
 
@@ -171,8 +177,8 @@ fun MainScreen(modifier: Modifier = Modifier) {
                 disabledContainerColor = Color.DarkGray
             ),
             onClick = {
-                scoreTeamA = 0
-                scoreTeamB = 0
+                mainViewModel.updateScoreTeamA(0)
+                mainViewModel.updateScoreTeamB(0)
             }
         ){
 
@@ -188,6 +194,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
 
     }
 }
+
 
 @Preview(showBackground = true)
 @Composable
