@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -48,8 +49,12 @@ class MainActivity : ComponentActivity() {
 fun MainScreen(modifier: Modifier = Modifier) {
 
     // etapa 1: implementando estado de variaveis utilizando a função remember
-    var scoreTeamA by remember { mutableIntStateOf(0) }
-    var scoreTeamB by remember { mutableIntStateOf(0) }
+    //var scoreTeamA by remember { mutableIntStateOf(0) }
+    //var scoreTeamB by remember { mutableIntStateOf(0) }
+
+    // etapa 2: implementando estado de variaveis utilizando a função rememberSaveable
+    var scoreTeamA by rememberSaveable { mutableIntStateOf(0) }
+    var scoreTeamB by rememberSaveable { mutableIntStateOf(0) }
 
     Column(modifier = modifier.fillMaxSize()){
 
