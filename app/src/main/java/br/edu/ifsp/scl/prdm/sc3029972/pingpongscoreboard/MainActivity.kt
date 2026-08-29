@@ -16,6 +16,7 @@ import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
@@ -58,6 +59,9 @@ fun MainScreen(modifier: Modifier = Modifier, mainViewModel: MainViewModel = vie
     // var scoreTeamA by rememberSaveable { mutableIntStateOf(0) }
     // var scoreTeamB by rememberSaveable { mutableIntStateOf(0) }
 
+    //Etapa 4: implementando estado de variaveis utilizando viewModel + stateFlow
+    val scoreBoard by mainViewModel.scoreBoardState.collectAsState()
+
     Column(modifier = modifier.fillMaxSize()){
 
         Row(
@@ -81,7 +85,7 @@ fun MainScreen(modifier: Modifier = Modifier, mainViewModel: MainViewModel = vie
             )
 
             Text(
-                text = mainViewModel.scoreTeamA.toString(),
+                text = scoreBoard.scoreTeamA.toString(),
                 modifier = Modifier
                     .fillMaxWidth(),
                 textAlign = TextAlign.Center,
@@ -98,7 +102,7 @@ fun MainScreen(modifier: Modifier = Modifier, mainViewModel: MainViewModel = vie
                     disabledContainerColor = Color.DarkGray
                 ),
                 onClick = {
-                    var scoreA = mainViewModel.scoreTeamA
+                    var scoreA = scoreBoard.scoreTeamA
                     scoreA++
                     mainViewModel.updateScoreTeamA(scoreA)
                 }
@@ -130,7 +134,7 @@ fun MainScreen(modifier: Modifier = Modifier, mainViewModel: MainViewModel = vie
             )
 
             Text(
-                text = mainViewModel.scoreTeamB.toString(),
+                text = scoreBoard.scoreTeamB.toString(),
                 modifier = Modifier
                     .fillMaxWidth(),
                 textAlign = TextAlign.Center,
@@ -147,7 +151,7 @@ fun MainScreen(modifier: Modifier = Modifier, mainViewModel: MainViewModel = vie
                     disabledContainerColor = Color.DarkGray
                 ),
                 onClick = {
-                    var scoreB = mainViewModel.scoreTeamB
+                    var scoreB = scoreBoard.scoreTeamB
                     scoreB++
                     mainViewModel.updateScoreTeamB(scoreB)
                 }

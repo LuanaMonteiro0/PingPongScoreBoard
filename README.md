@@ -5,7 +5,7 @@
 | `remember`                     | Não sobrevive   | Não sobrevive     |
 | `rememberSaveable`             | Sobrevive       | Não sobrevive     |
 | `ViewModel + mutableStateOf`   | Sobrevive       | Não sobrevive     |
-| `ViewModel + StateFlow`        |                 |                   |
+| `ViewModel + StateFlow`        | Sobrevive       | Não Sobrevive     |
 | `ViewModel + SavedStateHandle` |                 |                   |
 
 ---
