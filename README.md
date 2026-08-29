@@ -1,12 +1,12 @@
 ## Tabela de Abordagens
 
-| Abordagem                      | Rotação de tela | Morte do processo |
-|:-------------------------------|:----------------|:------------------|
-| `remember`                     | Não sobrevive   | Não sobrevive     |
-| `rememberSaveable`             | Sobrevive       | Não sobrevive     |
-| `ViewModel + mutableStateOf`   | Sobrevive       | Não sobrevive     |
-| `ViewModel + StateFlow`        | Sobrevive       | Não Sobrevive     |
-| `ViewModel + SavedStateHandle` |                 |                   |
+| Abordagem                      | Rotação de tela     | Morte do processo |
+|:-------------------------------|:--------------------|:------------------|
+| `remember`                     | Não sobrevive       | Não sobrevive     |
+| `rememberSaveable`             | Sobrevive           | Não sobrevive     |
+| `ViewModel + mutableStateOf`   | Sobrevive           | Não sobrevive     |
+| `ViewModel + StateFlow`        | Sobrevive           | Não Sobrevive     |
+| `ViewModel + SavedStateHandle` | Sobrevive           | Sobrevive         |
 
 ---
 
